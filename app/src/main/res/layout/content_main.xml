@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.example.minji.ticketing.MainActivity"
+    tools:showIn="@layout/app_bar_main">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#F8E700"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="326dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:background="@null"
+            android:hint="검색어를 입력하세요"
+            android:textColorHint="#ffffff"
+            android:textColor="#ffffff" />
+
+        <Button
+            android:id="@+id/bt_search"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.2"
+            android:background="@mipmap/action_search" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text=" 이미지 들어갈 부분"/>
+    </LinearLayout>
+    <TextView
+        android:layout_marginLeft="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="공연 오픈 일정"
+        android:textColor="#000000"
+        android:textSize="20dp"/>
+
+    <ListView
+        android:id="@+id/mainlist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp">
+
+    </ListView>
+</LinearLayout>

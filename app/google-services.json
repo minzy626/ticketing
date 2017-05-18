@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "798429290958",
+    "firebase_url": "https://tickting-3dd92.firebaseio.com",
+    "project_id": "tickting-3dd92",
+    "storage_bucket": "tickting-3dd92.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798429290958:android:fa291c81bf685e05",
+        "android_client_info": {
+          "package_name": "com.example.minji.ticketing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798429290958-m6pbv02b3nrmvlccbkkdsjs3q1ee1bo9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy-_Ac9aXF-uSLahkCJy3KruMHoHLv7aw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
