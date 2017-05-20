@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="com.example.minji.ticketing.MysingerActivity">
+
+
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        app:srcCompat="@mipmap/mysinger_title" />
+
+    <EditText
+        android:id="@+id/et_singer"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:hint="가수를 입력해주세요"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:paddingBottom="10pt"
+        android:paddingTop="10pt" />
+
+    <Button
+        android:id="@+id/btn_reg"
+        android:layout_width="60pt"
+        android:layout_height="wrap_content"
+        android:text="Button" />
+
+</LinearLayout>
