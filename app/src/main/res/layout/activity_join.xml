@@ -14,9 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
-        android:text="Join in"
-        android:textColor="#FFFFFF"
-        android:textSize="100dp" />
+       android:background="@mipmap/joinin" />
 
     <EditText
         android:id="@+id/et_joinemail"
@@ -59,24 +57,34 @@
         android:background="#FFFFFF" />
 
 
-
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
 
-    <Button
-        android:id="@+id/bt_joinok"
-        android:text="ok"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/bt_joinno"
-        android:text="cancel"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/bt_joinok"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:background="@mipmap/joinin_joinin" />
+
+        <Button
+            android:id="@+id/bt_joinno"
+            android:layout_width="70dp"
+            android:layout_height="30dp"
+            android:background="#F8E700"
+            android:text="Cancel"
+            android:textColor="#ffffff"
+            android:textSize="17dp" />
 
     </LinearLayout>
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        app:srcCompat="@mipmap/loginjoin_underbar"
+        android:layout_marginTop="20dp"/>
 </LinearLayout>

@@ -11,6 +11,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
@@ -25,6 +26,9 @@ public class MainActivity extends AppCompatActivity
     private Button bt_search;
     private Button bt_login;
 
+    ListView listView=null;
+    MainlistviewAdapter adapter=null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,15 +37,13 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ListView listView;
-        MainlistviewAdapter adapter;
 
         adapter= new MainlistviewAdapter();
         listView =(ListView)findViewById(R.id.mainlist);
         listView.setAdapter(adapter);
 
-        adapter.addItem("2017 축가","2017.05.28","성시경콘서트","연세대학교");
-        adapter.addItem("정준일 겨울콘서트 고백","2017.12.02","정준일 연말 콘서트","경희대학교");
+        adapter.addItem("2017 축가","2017.05.28","성시경콘서트","옥션티켓");
+        adapter.addItem("정준일 겨울콘서트 고백","2017.12.02","정준일 연말 콘서트","인터파크");
         adapter.addItem("콘서트이름","날짜","콘서트내용","장소");
         adapter.addItem("콘서트이름","날짜","콘서트내용","장소");
         adapter.addItem("콘서트이름","날짜","콘서트내용","장소");
@@ -64,6 +66,15 @@ public class MainActivity extends AppCompatActivity
                     startActivity(intent);
                 }
 
+            }
+        });
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id){
+                Intent intent = new Intent(getApplication(),ConcertinfoActivity.class);
+                startActivity(intent);
             }
         });
 
