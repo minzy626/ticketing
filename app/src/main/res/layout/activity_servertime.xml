@@ -14,4 +14,12 @@
         android:textColor="#ffffff"
         android:textSize="30dp" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F8e700"
+        android:text="서버시간확인"
+        android:textColor="#ffffff"
+        android:textSize="30dp" />
+
 </android.support.constraint.ConstraintLayout>

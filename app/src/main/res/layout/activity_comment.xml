@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.minji.ticketing.CommentActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/comment_title" />
+
+
+    <EditText
+        android:id="@+id/et_postcomment"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:paddingBottom="30dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:paddingTop="30dp"
+        android:hint="댓글을 입력해주세요"
+        android:textSize="18dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/btn_input"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="30dp"
+            android:paddingTop="30dp"
+            app:srcCompat="@drawable/comment_input" />
+
+        <ImageButton
+            android:id="@+id/btn_cancel"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingBottom="30dp"
+            android:paddingTop="30dp"
+            app:srcCompat="@drawable/comment_cancel" />
+
+    </LinearLayout>
+
+</LinearLayout>

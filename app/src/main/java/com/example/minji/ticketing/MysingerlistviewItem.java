@@ -5,9 +5,7 @@ package com.example.minji.ticketing;
  */
 
 
-public class MysingerlistviewItem {
-
-    private String singerStr;
+public class MysingerlistviewItem { private String singerStr;
 
     public String getSingerStr() {
         return singerStr;

@@ -1,9 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.minji.ticketing.PostActivity">
 
-</android.support.constraint.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/dealboard_title"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="4dp" />
+
+
+
+        <TextView
+            android:id="@+id/tv_posttitle"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:paddingBottom="7dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="7dp"
+            android:text="제먹"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/tv_postwriter"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:paddingBottom="7dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="7dp"
+            android:text="작성자"
+            android:textSize="24dp" />
+
+        <TextView
+            android:id="@+id/tv_postcontent"
+            android:layout_width="match_parent"
+            android:layout_height="317dp"
+            android:paddingBottom="7dp"
+            android:paddingLeft="15dp"
+            android:paddingTop="7dp"
+            android:text="본문"
+            android:textSize="18dp" />
+
+    <ImageButton
+        android:id="@+id/btn_postcomment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        app:srcCompat="@drawable/comment_btn" />
+
+
+</LinearLayout>
