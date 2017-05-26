@@ -7,7 +7,6 @@ package com.example.minji.ticketing;
 public class MainlistviewItem {
     private String titleStr;
     private String dateStr;
-    private String conStr;
     private String spaceStr;
 
     public void setTitle(String title){
@@ -18,10 +17,6 @@ public class MainlistviewItem {
         dateStr = date;
     }
 
-    public void setCon(String con){
-        conStr = con;
-    }
-
     public void setSpace(String space) { spaceStr = space;   }
 
     public String getTitle(){
@@ -29,10 +24,6 @@ public class MainlistviewItem {
     }
 
     public String getDate() { return this.dateStr;  }
-
-    public String getCon(){
-        return this.conStr;
-    }
 
     public String getSpace(){
         return this.spaceStr;

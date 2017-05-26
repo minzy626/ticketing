@@ -1,6 +1,7 @@
 package com.example.minji.ticketing;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -16,39 +17,45 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private EditText et_search;
-    static String search;
-    private Button bt_search;
-    private Button bt_login;
+    EditText et_search;
+    public static String search;
+    Button bt_search;
+    Button bt_login;
+    TextView tv_title;
+    TextView tv_date;
+    TextView tv_space;
+    ListView lv_mainlist;
 
     ListView listView=null;
     MainlistviewAdapter adapter=null;
+
+    public void init(){
+        //tv_title=(TextView)findViewById(R.id.tv_title);
+        //tv_date=(TextView)findViewById(R.id.tv_date);
+        //tv_space=(TextView)findViewById(R.id.tv_space);
+        lv_mainlist=(ListView)findViewById(R.id.lv_mainlist);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        init();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
         adapter= new MainlistviewAdapter();
-        listView =(ListView)findViewById(R.id.mainlist);
+        listView =(ListView)findViewById(R.id.lv_mainlist);
         listView.setAdapter(adapter);
-
-        adapter.addItem("2017 축가","2017.05.28","성시경콘서트","옥션티켓");
-        adapter.addItem("정준일 겨울콘서트 고백","2017.12.02","정준일 연말 콘서트","인터파크");
-        adapter.addItem("콘서트이름","날짜","콘서트내용","장소");
-        adapter.addItem("콘서트이름","날짜","콘서트내용","장소");
-        adapter.addItem("콘서트이름","날짜","콘서트내용","장소");
-        adapter.addItem("콘서트이름","날짜","콘서트내용","장소");
-        adapter.addItem("콘서트이름","날짜","콘서트내용","장소");
 
 
         bt_search=(Button)findViewById(R.id.bt_search);
@@ -158,4 +165,8 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
 }

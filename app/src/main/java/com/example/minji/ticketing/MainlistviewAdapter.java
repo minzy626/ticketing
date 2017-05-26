@@ -31,10 +31,9 @@ public class MainlistviewAdapter extends BaseAdapter{
             convertView = inflater.inflate(R.layout.mainlistview_item, parent, false);
         }
 
-        TextView titleTextView = (TextView) convertView.findViewById(R.id.title) ;
-        TextView dateTextView = (TextView) convertView.findViewById(R.id.date) ;
-        TextView conTextView = (TextView) convertView.findViewById(R.id.contents) ;
-        TextView spaceTextView = (TextView) convertView.findViewById(R.id.space) ;
+        TextView titleTextView = (TextView) convertView.findViewById(R.id.tv_title) ;
+        TextView dateTextView = (TextView) convertView.findViewById(R.id.tv_date) ;
+        TextView spaceTextView = (TextView) convertView.findViewById(R.id.tv_space) ;
 
             // Data Set(listViewItemList)에서 position에 위치한 데이터 참조 획득
         MainlistviewItem listViewItem = listViewItemList.get(position);
@@ -42,7 +41,6 @@ public class MainlistviewAdapter extends BaseAdapter{
         // 아이템 내 각 위젯에 데이터 반영
         titleTextView.setText(listViewItem.getTitle());
         dateTextView.setText(listViewItem.getDate());
-        conTextView.setText(listViewItem.getCon());
         spaceTextView.setText(listViewItem.getSpace());
 
 
@@ -65,7 +63,6 @@ public class MainlistviewAdapter extends BaseAdapter{
 
         item.setTitle(title);
         item.setDate(date);
-        item.setCon(con);
         item.setSpace(space);
 
 

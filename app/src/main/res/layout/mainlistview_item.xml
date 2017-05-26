@@ -4,13 +4,14 @@
     android:layout_height="match_parent">
 
     <LinearLayout
+        android:id="@+id/ll_"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="New Text"
@@ -23,28 +24,20 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/date"
+                android:id="@+id/tv_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.7"
                 android:text="New Text"
                 android:textColor="#000000"
                 android:textSize="16dp" />
 
-            <TextView
-                android:id="@+id/contents"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="New Text"
-                android:textColor="#000000"
-                android:textSize="16dp" />
 
             <TextView
-                android:id="@+id/space"
+                android:id="@+id/tv_space"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="0.3"
                 android:text="New Text"
                 android:textColor="#000000"
                 android:textSize="16dp" />

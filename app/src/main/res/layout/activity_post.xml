@@ -27,7 +27,7 @@
             android:paddingLeft="15dp"
             android:paddingTop="7dp"
             android:text="제먹"
-            android:textSize="24dp" />
+            />
 
         <TextView
             android:id="@+id/tv_postwriter"
@@ -37,7 +37,7 @@
             android:paddingLeft="15dp"
             android:paddingTop="7dp"
             android:text="작성자"
-            android:textSize="24dp" />
+            />
 
         <TextView
             android:id="@+id/tv_postcontent"
@@ -47,7 +47,7 @@
             android:paddingLeft="15dp"
             android:paddingTop="7dp"
             android:text="본문"
-            android:textSize="18dp" />
+            />
 
     <ImageButton
         android:id="@+id/btn_postcomment"

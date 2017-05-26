@@ -25,7 +25,7 @@
         android:paddingRight="15dp"
         android:paddingTop="30dp"
         android:hint="댓글을 입력해주세요"
-        android:textSize="18dp" />
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

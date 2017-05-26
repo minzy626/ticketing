@@ -52,10 +52,9 @@
         android:textSize="20dp"/>
 
     <ListView
-        android:id="@+id/mainlist"
+        android:id="@+id/lv_mainlist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp">
 
     </ListView>
