@@ -6,8 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="com.example.minji.ticketing.ConcertinfoActivity">
-
-    <View
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F8E700"
+        android:text="콘서트 정보"
+        android:textColor="#ffffff"
+        android:textSize="30dp" />
+    <ImageView
         android:id="@+id/view_conimg"
         android:background="#000000"
         android:layout_marginTop="20dp"

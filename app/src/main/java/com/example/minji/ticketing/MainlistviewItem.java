@@ -9,6 +9,8 @@ public class MainlistviewItem {
     private String dateStr;
     private String spaceStr;
 
+
+
     public void setTitle(String title){
         titleStr = title;
     }

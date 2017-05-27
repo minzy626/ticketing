@@ -20,6 +20,9 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.logging.Handler;
 
 public class ServertimeActivity extends AppCompatActivity implements View.OnClickListener{
     String search_url = "http://52.79.188.75/api/v1/get_servertime?query=";
@@ -34,7 +37,8 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
     Button bt_yes24;
     Button bt_auction;
     Button bt_interpark;
-
+    TimerTask second;
+    int curHour,curMinute,curSecond;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +103,8 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
         } // doInBackground : 백그라운드 작업을 진행한다.
         @Override
         protected void onPostExecute(String result) {
-            String datetime=result;
+
+           String datetime=result;
             String [] DTvalue =datetime.split(" ");//요일0,날짜1,월2,년3,시간4,gmt5
             for(int i=0;i<12;i++){
                 if(DTvalue[2].equals("May")){
@@ -107,13 +112,15 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
                 }
             }
             String time =DTvalue[4];
-            String [] Tvalue=time.split(":");
-            
+            String [] Tvalue=time.split(":");//시0,분1,초2
+            int hour = Integer.parseInt(Tvalue[0]);
+            int minute= Integer.parseInt(Tvalue[1]);
+            int second= Integer.parseInt(Tvalue[2]);
 
             tv_Date.setText(DTvalue[3]+" 년 "+DTvalue[2]+" 월 "+DTvalue[1]+" 일 ");
-            tv_Time.setText(DTvalue[4]);
+            tv_Time.setText((hour+9)+" : "+minute+" : "+second);
 
-            } // onPostExecute : 백그라운드 작업이 끝난 후 UI 작업을 진행한다.
+        } // onPostExecute : 백그라운드 작업이 끝난 후 UI 작업을 진행한다.
     } // JsonLoadingTask
 
     /**
@@ -188,4 +195,5 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
 
         return page.toString();
     }// getStringFromUrl()------------------------
+
 }
