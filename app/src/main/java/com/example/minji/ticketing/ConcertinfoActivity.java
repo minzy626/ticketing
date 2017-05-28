@@ -1,6 +1,9 @@
 package com.example.minji.ticketing;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -15,12 +18,15 @@ import android.widget.Toast;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLConnection;
 import java.util.HashMap;
 import java.util.List;
 
@@ -32,7 +38,7 @@ public class ConcertinfoActivity extends AppCompatActivity {
     private TextView coninfo;
     private ImageView conimg;
     private String ticket_id;
-    private List<HashMap<String,String>> concert_infoList=null;
+    private HashMap<String,String> concert_infomap=null;
 
 
     @Override
@@ -40,24 +46,24 @@ public class ConcertinfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_concertinfo);
 
+        gosite=(Button)findViewById(R.id.bt_gosite);
+        conimg=(ImageView)findViewById(R.id.view_conimg);
+        coninfo=(TextView)findViewById(R.id.tv_detailcon);
+
         final Intent intent = getIntent();
         ticket_id =intent.getExtras().getString("id");
-
+        concert_infomap=new  HashMap<String,String> ();
 
         Log.d("test"," detaiddddddddddddddddddddddddddddddddddddddddddddddddddl  "+ticket_id);
 
         request=search_url+ticket_id;
         new JsonLoadingTask().execute();
 
-        gosite=(Button)findViewById(R.id.bt_gosite);
-        conimg=(ImageView)findViewById(R.id.view_conimg);
-        coninfo=(TextView)findViewById(R.id.tv_detailcon);
+
 
         gosite.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                int i=0;
-                HashMap<String,String> hashmap =concert_infoList.get(i);
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(hashmap.get("site_url"))));
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(concert_infomap.get("site_url"))));
             }
         });
 
@@ -71,11 +77,8 @@ public class ConcertinfoActivity extends AppCompatActivity {
         } // doInBackground : 백그라운드 작업을 진행한다.
         @Override
         protected void onPostExecute(String result) {
-            int i=0;
-            HashMap<String,String> hashmap =concert_infoList.get(i);
-          //  hashmap.get("concert_name");
-            coninfo.setText(hashmap.get("detail_info"));
-
+            coninfo.setText(concert_infomap.get("detail_info"));
+            Log.d("test"," detaiddddddddddddddddddddddddddddddddddddddddddddddddddldlldldldd이미지븃ㅇ공  ");
         } // onPostExecute : 백그라운드 작업이 끝난 후 UI 작업을 진행한다.
     } // JsonLoadingTask
 
@@ -94,18 +97,7 @@ public class ConcertinfoActivity extends AppCompatActivity {
             //읽어들인 JSON포맷의 데이터를 JSON객체로 변환
             JSONObject json = new JSONObject(jsonPage);
 
-            String result_count =json.getString("result_count");//결과갯수
-            Log.d("TEST","Test:"+result_count);
-
-            JSONArray json_result = json.getJSONArray("result");//결과객체
-
-            int results = Integer.parseInt(result_count);
-
-
-
-                for(int i=0;i<json_result.length();i++){
-
-                    json=json_result.getJSONObject(i);
+                for(int i=0;i<json.length();i++){
 
                     String concert_name = json.getString("concert_name");//""안에는 변수명
                     Log.d("TEST","Test:"+concert_name );
@@ -119,7 +111,6 @@ public class ConcertinfoActivity extends AppCompatActivity {
                     Log.d("TEST","Test:"+image_url);
                     String source_site = json.getString("source_site");
 
-                    HashMap<String,String> concert_infomap= new HashMap<String,String>();//해시맵에저장
 
                     if(source_site.equals("1")){
                         source_site=source_site.replace("1","인터파크");
@@ -137,8 +128,6 @@ public class ConcertinfoActivity extends AppCompatActivity {
                     concert_infomap.put("open_date",open_date);
                     concert_infomap.put("image_url",image_url);
                     concert_infomap.put("source_site",source_site);
-
-                    concert_infoList.add(concert_infomap);//해시맵 리스트
 
                     Log.d("TEST","hashsize:"+concert_infomap.size());
 
@@ -193,7 +182,7 @@ public class ConcertinfoActivity extends AppCompatActivity {
             }
 
         }
-
         return page.toString();
     }// getStringFromUrl()------------------------
+
 }

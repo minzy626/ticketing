@@ -62,6 +62,8 @@ public class SearchActivity extends AppCompatActivity {
 
         btn_search2.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+
+
                 search2 = et_search2.getText().toString();
 
                 if(search2.length()==0){
@@ -77,8 +79,10 @@ public class SearchActivity extends AppCompatActivity {
         Showresult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id){
-                Intent intent_info = new Intent(getApplication(),ConcertinfoActivity.class);
-                startActivity(intent_info);
+                HashMap<String,String> hashmap =concert_infoList.get(position);
+                Intent intent = new Intent(getApplication(),ConcertinfoActivity.class);
+                intent.putExtra("id",hashmap.get("id"));
+                startActivity(intent);
             }
         });
     }
@@ -147,6 +151,7 @@ public class SearchActivity extends AppCompatActivity {
                     String image_url = json.getString("image_url");
                     Log.d("TEST","Test:"+image_url);
                     String source_site = json.getString("source_site");
+                    String id = json.getString("id");
 
                     HashMap<String,String> concert_infomap= new HashMap<String,String>();//해시맵에저장
 
@@ -166,6 +171,7 @@ public class SearchActivity extends AppCompatActivity {
                     concert_infomap.put("open_date",open_date);
                     concert_infomap.put("image_url",image_url);
                     concert_infomap.put("source_site",source_site);
+                    concert_infomap.put("id",id);
 
                     concert_infoList.add(concert_infomap);//해시맵 리스트
 
