@@ -37,7 +37,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     String search_url = "http://52.79.188.75/api/v1/tickets?per_page=";//
-    String per_page="15";//보일 개수
+    String per_page="20";//보일 개수
     String page_no="1";
     String request;
     private List<HashMap<String,String>> concert_infoList=null;
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity
             Intent intent1 = new Intent(this,MypageActivity.class);
             startActivity(intent1);
         } else if (id == R.id.nav_ticketopen) {
-            Intent intent2 = new Intent(this,MainActivity.class);
+            Intent intent2 = new Intent(this,TicketopenActivity.class);
             startActivity(intent2);
         } else if (id == R.id.nav_concert) {
             Intent intent3 = new Intent(this,CalenderActivity.class);

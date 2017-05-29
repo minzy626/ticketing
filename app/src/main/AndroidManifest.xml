@@ -108,6 +108,7 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".TicketopenActivity"></activity>
     </application>
 
 </manifest>

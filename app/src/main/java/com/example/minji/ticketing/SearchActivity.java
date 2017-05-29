@@ -40,7 +40,8 @@ public class SearchActivity extends AppCompatActivity {
     private ListView Showresult=null;
     private List<HashMap<String,String>> concert_infoList=null;
     private TextView tv_searchresult;
-    String search2;
+    public static String search2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +56,7 @@ public class SearchActivity extends AppCompatActivity {
         tv_searchresult=(TextView)findViewById(R.id.tv_searchresult);
         btn_search2=(Button)findViewById(R.id.bt_search2);
         et_search2=(EditText)findViewById(R.id.et_search2); //위젯활성화
-
+        et_search2.setText(query);
         Showresult.setAdapter(adapter);
 
         new JsonLoadingTask().execute();
@@ -70,12 +71,14 @@ public class SearchActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"검색어를 입력해주세요",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    request=search_url+search2;
-                    new JsonLoadingTask().execute();
+                    Intent intent2 = new Intent(getApplicationContext(),SearchActivity.class);
+                    intent2.putExtra("search",search2);
+                    startActivity(intent2);
                 }
 
             }
         });
+        //--버튼클릭리스너
         Showresult.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id){
@@ -85,7 +88,8 @@ public class SearchActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
+        //--리스트뷰클릭리스너
+    }//--onCreate
 
     public class JsonLoadingTask extends AsyncTask<String, Void, String> {
         @Override
@@ -101,7 +105,7 @@ public class SearchActivity extends AppCompatActivity {
                 String date = hashmap.get("open_date");
                 String space = hashmap.get("source_site");
                 adapter.addItem(title,date,space);
-                adapter.notifyDataSetChanged();
+                adapter.notifyDataSetChanged();//결과물 리스트뷰로 출력
 
             }
         } // onPostExecute : 백그라운드 작업이 끝난 후 UI 작업을 진행한다.
@@ -127,13 +131,13 @@ public class SearchActivity extends AppCompatActivity {
 
             JSONArray json_result = json.getJSONArray("result");//결과객체
 
-            int results = Integer.parseInt(result_count);
+            int results = Integer.parseInt(result_count);//결과 개수확인
 
-            if(results==0){
+            if(results==0){//결과개수가 없다면
                 Showresult.setVisibility(View.GONE);
                 tv_searchresult.setVisibility(View.VISIBLE);
 
-            }else{
+            }else{//결과값이 있다면 해쉬맵에 저장
                 tv_searchresult.setVisibility(View.GONE);
                 Showresult.setVisibility(View.VISIBLE);
                 for(int i=0;i<json_result.length();i++){
@@ -163,7 +167,7 @@ public class SearchActivity extends AppCompatActivity {
                         source_site=source_site.replace("3","옥션티켓");
                     }else if(source_site.equals("4")){
                         source_site=source_site.replace("4","YES24");
-                    }
+                    }//소스 정수로 구분된것 문자로 변환
 
                     concert_infomap.put("concert_name",concert_name);
                     concert_infomap.put("site_url",site_url);
@@ -173,7 +177,7 @@ public class SearchActivity extends AppCompatActivity {
                     concert_infomap.put("source_site",source_site);
                     concert_infomap.put("id",id);
 
-                    concert_infoList.add(concert_infomap);//해시맵 리스트
+                    concert_infoList.add(concert_infomap);//해시맵 리스트에 추가
 
                     Log.d("TEST","hashsize:"+concert_infomap.size());
 

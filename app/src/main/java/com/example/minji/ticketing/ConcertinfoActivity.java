@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -66,6 +67,7 @@ public class ConcertinfoActivity extends AppCompatActivity {
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(concert_infomap.get("site_url"))));
             }
         });
+        coninfo.setMovementMethod(new ScrollingMovementMethod());
 
 
 
@@ -78,7 +80,8 @@ public class ConcertinfoActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             coninfo.setText(concert_infomap.get("detail_info"));
-            Log.d("test"," detaiddddddddddddddddddddddddddddddddddddddddddddddddddldlldldldd이미지븃ㅇ공  ");
+            new DownloadImageTask((ImageView) findViewById(R.id.view_conimg))
+                    .execute(concert_infomap.get("image_url"));//url이미지 파싱 작업
         } // onPostExecute : 백그라운드 작업이 끝난 후 UI 작업을 진행한다.
     } // JsonLoadingTask
 
@@ -184,5 +187,46 @@ public class ConcertinfoActivity extends AppCompatActivity {
         }
         return page.toString();
     }// getStringFromUrl()------------------------
+/*    public static Bitmap getBitmapFromURL(String src) {
+        try {
+            Log.e("src",src);
+            URL url = new URL(src);
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setDoInput(true);
+            connection.connect();
+            InputStream input = connection.getInputStream();
+            Bitmap myBitmap = BitmapFactory.decodeStream(input);
+            Log.e("Bitmap","returned");
+            return myBitmap;
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.e("Exception",e.getMessage());
+            return null;
+        }
+    }*/
+    private class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        ImageView bmImage;
+
+        public DownloadImageTask(ImageView bmImage) {
+            this.bmImage = bmImage;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
+            }
+            return mIcon11;
+        }
+
+        protected void onPostExecute(Bitmap result) {
+            bmImage.setImageBitmap(result);
+        }
+    }
 
 }

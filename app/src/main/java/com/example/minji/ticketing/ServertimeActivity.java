@@ -38,7 +38,7 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
     Button bt_auction;
     Button bt_interpark;
     TimerTask second;
-    int curHour,curMinute,curSecond;
+    int hour,minute,seconds;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,11 +57,12 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
 
 
 
-        bt_interpark.setOnClickListener(this);
-        bt_Searchtime.setOnClickListener(this);
-        bt_auction.setOnClickListener(this);
-        bt_yes24.setOnClickListener(this);
-        bt_melon.setOnClickListener(this);
+            bt_interpark.setOnClickListener(this);
+            bt_Searchtime.setOnClickListener(this);
+            bt_auction.setOnClickListener(this);
+            bt_yes24.setOnClickListener(this);
+            bt_melon.setOnClickListener(this);
+
 
     }
     public void onClick(View v) {
@@ -78,18 +79,22 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
         }else if (i == R.id.btn_auction) {
             request=search_url+"http://ticket.auction.co.kr/";
             tv_Url.setText("http://ticket.auction.co.kr/");
+            et_url.setText("http://ticket.auction.co.kr/");
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_melon) {
             request=search_url+"http://ticket.melon.com/";
             tv_Url.setText("http://ticket.melon.com/");
+            et_url.setText("http://ticket.melon.com/");
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_yes24) {
             request=search_url+"http://ticket.yes24.com/";
             tv_Url.setText("http://ticket.yes24.com/");
+            et_url.setText("http://ticket.yes24.com/");
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_interpark) {
             request=search_url+"http://ticket.interpark.com/";
             tv_Url.setText("http://ticket.interpark.com/");
+            et_url.setText("http://ticket.interpark.com/");
             new JsonLoadingTask().execute();
         }
     }
@@ -103,8 +108,8 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
         } // doInBackground : 백그라운드 작업을 진행한다.
         @Override
         protected void onPostExecute(String result) {
-
-           String datetime=result;
+            Timer timer = new Timer();
+            String datetime=result;
             String [] DTvalue =datetime.split(" ");//요일0,날짜1,월2,년3,시간4,gmt5
             for(int i=0;i<12;i++){
                 if(DTvalue[2].equals("May")){
@@ -113,12 +118,42 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
             }
             String time =DTvalue[4];
             String [] Tvalue=time.split(":");//시0,분1,초2
-            int hour = Integer.parseInt(Tvalue[0]);
-            int minute= Integer.parseInt(Tvalue[1]);
-            int second= Integer.parseInt(Tvalue[2]);
+            int ihour = Integer.parseInt(Tvalue[0]);
+            int iminute= Integer.parseInt(Tvalue[1]);
+            int isecond= Integer.parseInt(Tvalue[2]);
+            hour=ihour;
+            minute=iminute;
+            seconds=isecond;
+
+            second = new TimerTask() {
+                @Override
+                public void run() {
+                    seconds+=1;
+                    if(seconds==61){
+                        seconds=1;
+                        minute+=1;
+                    }
+                    if(minute==61){
+                        minute=1;
+                        hour+=1;
+                    }
+                    ServertimeActivity.this.runOnUiThread(new Runnable(){
+                        public void run(){
+                            tv_Time.setText((hour+9)+" : "+minute+" : "+seconds);
+                            Log.d("시간확인시간확인시간확인","시간확인시간확인"+hour +"   "+ minute +"    "+ seconds);
+                        }
+
+                    });
+                }
+            };
+
+            timer.schedule(second,0,1000);
+
+
 
             tv_Date.setText(DTvalue[3]+" 년 "+DTvalue[2]+" 월 "+DTvalue[1]+" 일 ");
-            tv_Time.setText((hour+9)+" : "+minute+" : "+second);
+
+
 
         } // onPostExecute : 백그라운드 작업이 끝난 후 UI 작업을 진행한다.
     } // JsonLoadingTask
@@ -195,5 +230,10 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
 
         return page.toString();
     }// getStringFromUrl()------------------------
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+    }
 
 }
