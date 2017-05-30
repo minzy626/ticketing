@@ -74,6 +74,7 @@ public class SearchActivity extends AppCompatActivity {
                     Intent intent2 = new Intent(getApplicationContext(),SearchActivity.class);
                     intent2.putExtra("search",search2);
                     startActivity(intent2);
+                    finish();//뒤로버튼누르면 계속 화면이 나와서 액티비티 finish처리
                 }
 
             }

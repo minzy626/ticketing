@@ -52,13 +52,13 @@ public class ConcertinfoActivity extends AppCompatActivity {
         coninfo=(TextView)findViewById(R.id.tv_detailcon);
 
         final Intent intent = getIntent();
-        ticket_id =intent.getExtras().getString("id");
-        concert_infomap=new  HashMap<String,String> ();
+        ticket_id =intent.getExtras().getString("id");//전페이지에서 넘겨받으 id저장
+        concert_infomap=new  HashMap<String,String> ();//해시맵
 
         Log.d("test"," detaiddddddddddddddddddddddddddddddddddddddddddddddddddl  "+ticket_id);
 
-        request=search_url+ticket_id;
-        new JsonLoadingTask().execute();
+        request=search_url+ticket_id;//리퀘스트 초기화
+        new JsonLoadingTask().execute();//실행
 
 
 
@@ -66,8 +66,8 @@ public class ConcertinfoActivity extends AppCompatActivity {
             public void onClick(View v){
                 startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(concert_infomap.get("site_url"))));
             }
-        });
-        coninfo.setMovementMethod(new ScrollingMovementMethod());
+        });//버튼리스터
+        coninfo.setMovementMethod(new ScrollingMovementMethod());//텍스트뷰 스크롤 활성화
 
 
 
@@ -75,13 +75,16 @@ public class ConcertinfoActivity extends AppCompatActivity {
     public class JsonLoadingTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strs) {
-            return getJsonText(request);
+            return getJsonText(request);//getJsonText반환
         } // doInBackground : 백그라운드 작업을 진행한다.
         @Override
         protected void onPostExecute(String result) {
-            coninfo.setText(concert_infomap.get("detail_info"));
+            String detail_info =concert_infomap.get("detail_info");//상세정보 string에저장
+            detail_info=detail_info.replaceAll("-","\n");//-를 구분으로 개행처리
+            coninfo.setText(detail_info);//setText
             new DownloadImageTask((ImageView) findViewById(R.id.view_conimg))
                     .execute(concert_infomap.get("image_url"));//url이미지 파싱 작업
+
         } // onPostExecute : 백그라운드 작업이 끝난 후 UI 작업을 진행한다.
     } // JsonLoadingTask
 
@@ -100,10 +103,10 @@ public class ConcertinfoActivity extends AppCompatActivity {
             //읽어들인 JSON포맷의 데이터를 JSON객체로 변환
             JSONObject json = new JSONObject(jsonPage);
 
-                for(int i=0;i<json.length();i++){
+                for(int i=0;i<json.length();i++){//객체크기만큼 반복
 
                     String concert_name = json.getString("concert_name");//""안에는 변수명
-                    Log.d("TEST","Test:"+concert_name );
+                    Log.d("TEST","Test:"+concert_name );//제대로 읽어오나 확인 위한 Log처리
                     String detail_info = json.getString("detail_info");
                     Log.d("TEST","Test:"+detail_info);
                     String site_url = json.getString("site_url");
@@ -115,7 +118,7 @@ public class ConcertinfoActivity extends AppCompatActivity {
                     String source_site = json.getString("source_site");
 
 
-                    if(source_site.equals("1")){
+                    if(source_site.equals("1")){//정수화해놓은 사이트명을 문자열로 교체
                         source_site=source_site.replace("1","인터파크");
                     }else if(source_site.equals("2")){
                         source_site=source_site.replace("2","멜론티켓");
@@ -124,7 +127,7 @@ public class ConcertinfoActivity extends AppCompatActivity {
                     }else if(source_site.equals("4")){
                         source_site=source_site.replace("4","YES24");
                     }
-
+                    //각 변수명으로 추출한 객체를 해시맵에저장
                     concert_infomap.put("concert_name",concert_name);
                     concert_infomap.put("site_url",site_url);
                     concert_infomap.put("detail_info",detail_info);
@@ -133,7 +136,7 @@ public class ConcertinfoActivity extends AppCompatActivity {
                     concert_infomap.put("source_site",source_site);
 
                     Log.d("TEST","hashsize:"+concert_infomap.size());
-
+                    //해시맵에 들어갔나 확인위한 로그처리
                 }
         } catch (Exception e) {
             // TODO: handle exception
