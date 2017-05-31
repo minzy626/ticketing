@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ListView;
 
 import org.json.JSONArray;
@@ -24,21 +25,30 @@ import java.util.List;
 
 public class TicketopenActivity extends AppCompatActivity {
     String search_url = "http://52.79.188.75/api/v1/tickets?per_page=";//
-    String per_page="30";//보일 개수
+    String per_page="20";//보일 개수
     String page_no="1";
     String request;
+    int page;
     ListView listView=null;
     MainlistviewAdapter adapter=null;
+    Button btn_more;
 
     private List<HashMap<String,String>> concert_infoList=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ticketopen);
+
         adapter= new MainlistviewAdapter();
         concert_infoList=new ArrayList<HashMap<String, String>>();//리스트생성
+
         listView =(ListView)findViewById(R.id.lv_openlist);
         listView.setAdapter(adapter);
+
+        View footer = getLayoutInflater().inflate(R.layout.ticketopen_footer,null,false);
+        listView.addFooterView(footer);
+
+        btn_more =(Button)findViewById(R.id.btn_footer);
         request=search_url+per_page+"&page_no="+page_no;
 
         new JsonLoadingTask().execute();
@@ -50,6 +60,13 @@ public class TicketopenActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplication(),ConcertinfoActivity.class);
                 intent.putExtra("id",hashmap.get("id"));
                 startActivity(intent);
+            }
+        });
+        btn_more.setOnClickListener(new Button.OnClickListener(){
+            public void onClick(View v){
+                page=1+Integer.parseInt(page_no);
+                request=search_url+per_page+"&page_no"+Integer.toString(page);
+                new JsonLoadingTask().execute();
             }
         });
 

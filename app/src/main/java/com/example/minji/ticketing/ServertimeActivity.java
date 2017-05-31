@@ -118,7 +118,7 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
             }
             String time =DTvalue[4];
             String [] Tvalue=time.split(":");//시0,분1,초2
-            int ihour = Integer.parseInt(Tvalue[0]);
+            int ihour = Integer.parseInt(Tvalue[0]);// 문자열 정수로변환
             int iminute= Integer.parseInt(Tvalue[1]);
             int isecond= Integer.parseInt(Tvalue[2]);
             hour=ihour;
@@ -140,7 +140,7 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
                     ServertimeActivity.this.runOnUiThread(new Runnable(){
                         public void run(){
                             tv_Time.setText((hour+9)+" : "+minute+" : "+seconds);
-                            Log.d("시간확인시간확인시간확인","시간확인시간확인"+hour +"   "+ minute +"    "+ seconds);
+                            Log.d("시간확인시간확인시간확인","시간확인시간확인    "+hour +"   "+ minute +"    "+ seconds);
                         }
 
                     });

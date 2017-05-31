@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.example.minji.ticketing.CalenderActivity">
 
     <TextView
@@ -13,4 +14,95 @@
         android:text="콘서트 일정보기"
         android:textColor="#ffffff"
         android:textSize="30dp" />
-</android.support.constraint.ConstraintLayout>
+
+    <GridLayout
+        android:background="#F8e700"
+        android:text="콘서트 일정보기"
+        android:textColor="#ffffff"
+        android:layout_gravity="center|center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="3"
+         >
+        <Button
+            android:id="@+id/btn_1"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="1월"
+            />
+        <Button
+            android:id="@+id/btn_2"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="2월"
+            />
+        <Button
+            android:id="@+id/btn_3"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="3월"
+            />
+        <Button
+            android:id="@+id/btn_4"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="4월"
+            />
+        <Button
+            android:id="@+id/btn_5"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="5월"
+            />
+        <Button
+            android:id="@+id/btn_6"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="6월"
+            />
+        <Button
+            android:id="@+id/btn_7"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="7월"
+            />
+        <Button
+            android:id="@+id/btn_8"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="8월"
+            />
+        <Button
+            android:id="@+id/btn_9"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="9월"
+            />
+        <Button
+            android:id="@+id/btn_10"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="10월"
+            />
+        <Button
+            android:id="@+id/btn_11"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="11월"
+            />
+        <Button
+            android:id="@+id/btn_12"
+            android:background="#F8e700"
+            android:textColor="#ffffff"
+            android:text="12월" />
+
+    </GridLayout>
+    <ListView
+    android:id="@+id/list_cal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"></ListView>
+
+
+
+</LinearLayout>
