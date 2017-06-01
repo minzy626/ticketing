@@ -26,7 +26,7 @@ import java.util.List;
 public class TicketopenActivity extends AppCompatActivity {
     String search_url = "http://52.79.188.75/api/v1/tickets?per_page=";//
     String per_page="20";//보일 개수
-    String page_no="1";
+    String page_no;
     String request;
     int page;
     ListView listView=null;
@@ -49,6 +49,7 @@ public class TicketopenActivity extends AppCompatActivity {
         listView.addFooterView(footer);
 
         btn_more =(Button)findViewById(R.id.btn_footer);
+        page_no="1";
         request=search_url+per_page+"&page_no="+page_no;
 
         new JsonLoadingTask().execute();
@@ -64,8 +65,11 @@ public class TicketopenActivity extends AppCompatActivity {
         });
         btn_more.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v){
+                concert_infoList.clear();
                 page=1+Integer.parseInt(page_no);
-                request=search_url+per_page+"&page_no"+Integer.toString(page);
+                page_no=Integer.toString(page);
+                Log.d("tesssssssssssst","test           "+page);
+                request=search_url+per_page+"&page_no"+page_no;
                 new JsonLoadingTask().execute();
             }
         });

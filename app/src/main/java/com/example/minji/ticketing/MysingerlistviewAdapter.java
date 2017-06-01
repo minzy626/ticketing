@@ -65,4 +65,5 @@ public class MysingerlistviewAdapter  extends BaseAdapter {
 
         singerlistViewItemList.add(item);
     }
+
 }

@@ -70,4 +70,7 @@ public class MainlistviewAdapter extends BaseAdapter{
 
         listViewItemList.add(item);
     }
+    public void remove(){
+        listViewItemList.clear();
+    }
 }

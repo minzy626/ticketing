@@ -68,4 +68,9 @@ public class Cal_listAdapter extends BaseAdapter {
 
     callistitemList.add(item);
     }
+    public void remove (){
+        callistitemList.clear();
+
+    }
+
 }

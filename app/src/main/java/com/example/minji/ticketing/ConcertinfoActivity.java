@@ -1,17 +1,20 @@
 package com.example.minji.ticketing;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +43,8 @@ public class ConcertinfoActivity extends AppCompatActivity {
     private ImageView conimg;
     private String ticket_id;
     private HashMap<String,String> concert_infomap=null;
-
+    private ImageButton alarm;
+    private String opendate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +54,7 @@ public class ConcertinfoActivity extends AppCompatActivity {
         gosite=(Button)findViewById(R.id.bt_gosite);
         conimg=(ImageView)findViewById(R.id.view_conimg);
         coninfo=(TextView)findViewById(R.id.tv_detailcon);
+        alarm=(ImageButton)findViewById(R.id.btn_select_alarm);
 
         final Intent intent = getIntent();
         ticket_id =intent.getExtras().getString("id");//전페이지에서 넘겨받으 id저장
@@ -68,9 +73,41 @@ public class ConcertinfoActivity extends AppCompatActivity {
             }
         });//버튼리스터
         coninfo.setMovementMethod(new ScrollingMovementMethod());//텍스트뷰 스크롤 활성화
+        alarm.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
 
+                AlertDialog.Builder dialog = new AlertDialog.Builder(ConcertinfoActivity.this);
+                dialog  .setTitle("알림 설정")
+                        .setMessage("티켓 오픈일 알림을 받으시겠습니까?")
+                        .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(ConcertinfoActivity.this,
+                                        "알림이 설정되었습니다",
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        /*.setNeutralButton("취소", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(ConcertinfoActivity.this,
+                                        "취소",Toast.LENGTH_SHORT).show();
 
+                            }
+                        })*/
+                        .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Toast.makeText(ConcertinfoActivity.this,
+                                        "저장이 되지 않았습니다",
+                                        Toast.LENGTH_SHORT).show();
 
+                            }
+                        });
+                dialog.create();
+                dialog.show();
+            }
+        });
     }
     public class JsonLoadingTask extends AsyncTask<String, Void, String> {
         @Override
@@ -84,7 +121,8 @@ public class ConcertinfoActivity extends AppCompatActivity {
             coninfo.setText(detail_info);//setText
             new DownloadImageTask((ImageView) findViewById(R.id.view_conimg))
                     .execute(concert_infomap.get("image_url"));//url이미지 파싱 작업
-
+            opendate=concert_infomap.get("open_date");
+            Log.d("test","opendate "+opendate);
         } // onPostExecute : 백그라운드 작업이 끝난 후 UI 작업을 진행한다.
     } // JsonLoadingTask
 

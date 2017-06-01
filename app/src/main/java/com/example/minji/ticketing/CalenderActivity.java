@@ -220,50 +220,86 @@ public class CalenderActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.btn_1) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 1월";
             request=search_url+query;
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_2) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 2월";
             request=search_url+query;
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_3) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 3월";
             request=search_url+query;
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_4) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 4월";
             request=search_url+query;
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_5) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 5월";
             request=search_url+query;
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_6) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 6월";
             request=search_url+query;
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_7) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 7월";
             request=search_url+query;
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_8) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 8월";
             request=search_url+query;
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_9) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 9월";
             request=search_url+query;
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_10) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 10월";
             request=search_url+query;
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_11) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 11월";
             request=search_url+query;
             new JsonLoadingTask().execute();
         }else if (i == R.id.btn_12) {
+            concert_infoList.clear();
+            adapter.remove();
+            adapter.notifyDataSetChanged();
             query="2017년 12월";
             request=search_url+query;
             new JsonLoadingTask().execute();

@@ -13,10 +13,16 @@
         android:text="콘서트 정보"
         android:textColor="#ffffff"
         android:textSize="30dp" />
+    <ImageButton
+        android:layout_gravity="end"
+        android:id="@+id/btn_select_alarm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/alarm_bell_on"/>
+
     <ImageView
         android:id="@+id/view_conimg"
         android:background="#ffffff"
-        android:layout_marginTop="10dp"
         android:layout_gravity="center"
         android:layout_width="162dp"
         android:layout_height="202dp"/>
@@ -24,7 +30,7 @@
     <TextView
         android:id="@+id/tv_detailcon"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
+        android:layout_height="220dp"
         android:layout_marginTop="20dp"
         android:scrollbars="vertical"
         android:text="콘서트 상세정보" />
