@@ -32,6 +32,7 @@ public class TicketopenActivity extends AppCompatActivity {
     ListView listView=null;
     MainlistviewAdapter adapter=null;
     Button btn_more;
+    int i=0;
 
     private List<HashMap<String,String>> concert_infoList=null;
     @Override
@@ -49,7 +50,7 @@ public class TicketopenActivity extends AppCompatActivity {
         listView.addFooterView(footer);
 
         btn_more =(Button)findViewById(R.id.btn_footer);
-        page_no="1";
+        page_no="0";
         request=search_url+per_page+"&page_no="+page_no;
 
         new JsonLoadingTask().execute();
@@ -65,11 +66,11 @@ public class TicketopenActivity extends AppCompatActivity {
         });
         btn_more.setOnClickListener(new Button.OnClickListener(){
             public void onClick(View v){
-                concert_infoList.clear();
-                page=1+Integer.parseInt(page_no);
+                page=20+Integer.parseInt(page_no);
                 page_no=Integer.toString(page);
-                Log.d("tesssssssssssst","test           "+page);
-                request=search_url+per_page+"&page_no"+page_no;
+                Log.d("tesssssssssssst","testpage           "+page);
+                request=search_url+per_page+"&page_no="+page_no;
+                Log.d("tesssssssssssst","testrequest           "+request);
                 new JsonLoadingTask().execute();
             }
         });
@@ -82,16 +83,17 @@ public class TicketopenActivity extends AppCompatActivity {
         } // doInBackground : 백그라운드 작업을 진행한다.
         @Override
         protected void onPostExecute(String result) {
-
-            for(int i=0;i<concert_infoList.size();i++){
+            Log.d("tesssssssssssst","testii           "+i);
+            while(i<concert_infoList.size()){
                 HashMap<String,String> hashmap =concert_infoList.get(i);
                 String title = hashmap.get("concert_name");
                 String date = hashmap.get("open_date");
                 String space = hashmap.get("source_site");
                 adapter.addItem(title,date,space);
                 adapter.notifyDataSetChanged();
-
+                i++;
             }
+            Log.d("tesssssssssssst","testii           "+i);
         } // onPostExecute : 백그라운드 작업이 끝난 후 UI 작업을 진행한다.
     } // JsonLoadingTask
 
@@ -158,6 +160,7 @@ public class TicketopenActivity extends AppCompatActivity {
                 concert_infoList.add(concert_infomap);//해시맵 리스트
 
                 Log.d("TEST","hashsize:"+concert_infomap.size());
+                Log.d("TEST","Listsize:"+concert_infoList.size());
 
             }
 

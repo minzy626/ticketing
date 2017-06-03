@@ -24,8 +24,7 @@
         android:layout_marginTop="50dp"
         android:layout_weight="0.03"
         android:textColor="#ffffff"
-        android:hint="email@email.com"
-        android:inputType="textEmailAddress"
+        android:hint="ID"
         android:textColorHint="#ffffff"
         android:background="@null"/>
     <View
