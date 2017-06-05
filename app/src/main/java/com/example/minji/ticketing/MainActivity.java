@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity
     Button bt_logout;
     String selectedItem;
 
-
     ListView listView=null;
     MainlistviewAdapter adapter=null;
 
@@ -300,6 +299,7 @@ public class MainActivity extends AppCompatActivity
 
         BufferedReader bufreader=null;
         HttpURLConnection urlConnection = null;
+        Log.d("testttttttttttttttttt","test"+pUrl);
 
         StringBuffer page=new StringBuffer(); //읽어온 데이터를 저장할 StringBuffer객체 생성
 

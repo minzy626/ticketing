@@ -42,7 +42,7 @@
         <TextView
             android:id="@+id/tv_postcontent"
             android:layout_width="match_parent"
-            android:layout_height="317dp"
+            android:layout_height="410dp"
             android:paddingBottom="7dp"
             android:paddingLeft="15dp"
             android:paddingTop="7dp"

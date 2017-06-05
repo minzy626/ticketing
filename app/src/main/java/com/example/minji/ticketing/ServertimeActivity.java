@@ -114,6 +114,8 @@ public class ServertimeActivity extends AppCompatActivity implements View.OnClic
             for(int i=0;i<12;i++){
                 if(DTvalue[2].equals("May")){
                     DTvalue[2]=DTvalue[2].replace("May","5");
+                }else if(DTvalue[2].equals("Jun")){
+                    DTvalue[2]=DTvalue[2].replace("Jun","6");
                 }
             }
             String time =DTvalue[4];
