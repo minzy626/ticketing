@@ -28,12 +28,13 @@ public class LoginActivity extends AppCompatActivity
     Button bt_join;//회원가입버튼
     static String Id="";//입력받은 아이디
     static String Password="";//입력받은 비밀번호
+    static String Name="";
+    static String Phone="";
 
-    static boolean pw_ok=false,id_ok=false;//비밀번호,아이디상태초기화
     static public boolean login_state=false;//로그인상태초기화 false
 
     CheckBox autoLogin;//자동로그인 체크박스
-    Boolean loginChecked;//로그인체크
+    static  public Boolean loginChecked=false;//체크
 
     final int code_chkid=1000;//아이디체크코드초기화
    //회원가입시 받을정보들
@@ -101,6 +102,7 @@ public class LoginActivity extends AppCompatActivity
 
             case R.id.bt_join:
                 Intent intent1 = new Intent(getApplicationContext(), JoinActivity.class);
+
                 startActivity(intent1);
         }
     }
@@ -115,7 +117,7 @@ public class LoginActivity extends AppCompatActivity
 
         }
     }
-    static public void result_login(String result,String pw,String name){
+    static public void result_login(String result,String pw,String name,String ph){
         loginMysql.active=false;
         if(result.equals("false"))
             Toast.makeText(mContext,"사용자 ID가 없습니다.",Toast.LENGTH_SHORT).show();
@@ -127,7 +129,10 @@ public class LoginActivity extends AppCompatActivity
                 Toast.makeText(mContext, name + "님 로그인 되었습니다.", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(mContext,MainActivity.class);/* Ticketing 프로젝트의 MainActivity로 연결 */
                 intent.putExtra("name",name);
-
+                Id=result;
+                Password=pw;
+                Name=name;
+                Phone=ph;
                 mContext.startActivity(intent);
 
             }else//비밀번호 확인해주세욤
@@ -135,22 +140,15 @@ public class LoginActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK){
-            switch (requestCode){
-                case code_chkid:
-                    if(data.getExtras().getBoolean("ok")){
-                        Id=data.getExtras().getString("id");
-
-                        id_ok=true;
-                    }
-                    manageDialog.dismiss();
-                    break;
-            }
-        }
-
+    protected void onResume(){//회원가입 완료 후 뜨는화면, 회원가입시 입력한 아아디 비밀번호 세팅
+        super.onResume();
+        mIDField = (EditText) findViewById(R.id.et_email);
+        mPasswordField = (EditText) findViewById(R.id.et_pw);
+        mIDField.setText(JoinActivity.st_id);
+        mPasswordField.setText(JoinActivity.st_pw);
+    }
+    public void onBackPressed() {
+        finish();
     }
 
 }

@@ -24,7 +24,9 @@
         android:layout_marginTop="20dp"
         android:background="@null"
         android:hint="ID"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:textColorHint="#ffffff" />
+
 
     <View
         android:id="@+id/UnderLine4"
@@ -34,7 +36,14 @@
         android:layout_gravity="center"
         android:layout_marginTop="2dp"
         android:background="#FFFFFF" />
-
+    <Button
+        android:id="@+id/bt_idchk"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="90dp"
+        android:background="#F8E700"
+        android:text="ID 중복확인"
+        android:textColor="#ffffff" />
     <EditText
         android:id="@+id/et_joinpw"
         android:layout_width="200dp"

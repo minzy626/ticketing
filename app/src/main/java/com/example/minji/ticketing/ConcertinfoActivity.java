@@ -74,41 +74,42 @@ public class ConcertinfoActivity extends AppCompatActivity {
         });//버튼리스터
         coninfo.setMovementMethod(new ScrollingMovementMethod());//텍스트뷰 스크롤 활성화
         alarm.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+            public void onClick(View v) {
 
-                AlertDialog.Builder dialog = new AlertDialog.Builder(ConcertinfoActivity.this);
-                dialog  .setTitle("알림 설정")
-                        .setMessage("티켓 오픈일 알림을 받으시겠습니까?")
-                        .setPositiveButton("네", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(ConcertinfoActivity.this,
-                                        "알림이 설정되었습니다",
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        })
-                        /*.setNeutralButton("취소", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(ConcertinfoActivity.this,
-                                        "취소",Toast.LENGTH_SHORT).show();
-
-                            }
-                        })*/
-                        .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(ConcertinfoActivity.this,
-                                        "저장이 되지 않았습니다",
-                                        Toast.LENGTH_SHORT).show();
-
-                            }
-                        });
-                dialog.create();
-                dialog.show();
+                if(LoginActivity.Id.isEmpty()){
+                    Toast.makeText(ConcertinfoActivity.this,
+                            "로그인 하셔야 이용가능 합니다",
+                            Toast.LENGTH_SHORT).show();
+                }
+                else{
+                    AlertDialog.Builder dialog = new AlertDialog.Builder(ConcertinfoActivity.this);
+                    dialog.setTitle("알림 설정")
+                            .setMessage("티켓 오픈일 알림을 받으시겠습니까?")
+                            .setPositiveButton("네", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(ConcertinfoActivity.this,
+                                            "알림이 설정되었습니다",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Toast.makeText(ConcertinfoActivity.this,
+                                            "저장이 되지 않았습니다",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    dialog.create();
+                    dialog.show();
+                }
             }
         });
-    }
+
+
+
+    }//---OnCreate
     public class JsonLoadingTask extends AsyncTask<String, Void, String> {
         @Override
         protected String doInBackground(String... strs) {

@@ -65,14 +65,16 @@ public class chkIdActivity extends AppCompatActivity implements View.OnClickList
 
     static public void chkidresult(String result){  //id check
         Log.e("chkidresult",result);
-        if(result.contains("false")&&!result.contains("{")){
+        if(result.contains("1")){
             Log.e("chkidresult","false");
+            description.setText("사용중인 아이디입니다.");
+            chkok=false;
+        }else if(result.contains("0")){
+            Log.e("chkidresult","true");
             description.setText("사용가능한 아이디입니다.");
             chkok=true;
         }else{
-            Log.e("chkidresult","true");
-            description.setText("사용중인 아이디입니다.");
-            chkok=false;
+            description.setText("다시 확인해주세요");
         }
 
     }

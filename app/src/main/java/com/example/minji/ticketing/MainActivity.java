@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity
     public static String search;
     Button bt_search;
     Button bt_login;
+    Button bt_logout;
     String selectedItem;
 
 
@@ -107,14 +108,32 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
         View nav_header=navigationView.getHeaderView(0);
         bt_login=(Button)nav_header.findViewById(R.id.bt_headlogin);
+        bt_logout=(Button)nav_header.findViewById(R.id.bt_headlogout);
         bt_login.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
                 startActivity(intent);
-
+                finish();
+            }
+        });
+        bt_logout.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                LoginActivity.Id="";
+                LoginActivity.Phone="";
+                LoginActivity.Name="";
+                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
+        if(LoginActivity.Id.isEmpty()){
+            bt_login.setVisibility(View.VISIBLE);
+            bt_logout.setVisibility(View.GONE);
+        }else{
+            bt_login.setVisibility(View.GONE);
+            bt_logout.setVisibility(View.VISIBLE);
+        }
 
     }
 
@@ -157,8 +176,13 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_mypage) {
+            if(LoginActivity.Id.isEmpty()){
+                Toast.makeText(MainActivity.this,"로그인 하셔야 이용가능 합니다.",Toast.LENGTH_LONG).show();
+            }
+            else{
             Intent intent1 = new Intent(this,MypageActivity.class);
             startActivity(intent1);
+            }
         } else if (id == R.id.nav_ticketopen) {
             Intent intent2 = new Intent(this,TicketopenActivity.class);
             startActivity(intent2);

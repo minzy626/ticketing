@@ -90,10 +90,9 @@ public class controlMysql extends Thread {
 
 
     public controlMysql(String id,int type){
-        //String userinfo_url="http://answerofgod.honor.es/study/android/login/sql/getuserinfo.php?id=";
-        //String idchk_url="http://answerofgod.honor.es/study/android/login/sql/chkid.php?id=";
+
         String userinfo_url="http://192.168.0.237/study/android/login/sql/getuserinfo.php?id=";     //your server IP
-        String idchk_url="http://192.168.0.237/study/android/login/sql/chkid.php?id=";      //your server IP
+        String idchk_url="https://ticketing-php-minzykim.c9users.io/idchk.php?id=";      //your server IP
         String userId=id;
 
         switch(type){
