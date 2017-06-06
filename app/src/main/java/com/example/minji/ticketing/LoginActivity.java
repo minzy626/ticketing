@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity
     static String Password="";//입력받은 비밀번호
     static String Name="";
     static String Phone="";
+    static String Index="";
 
     static public boolean login_state=false;//로그인상태초기화 false
 
@@ -117,7 +118,7 @@ public class LoginActivity extends AppCompatActivity
 
         }
     }
-    static public void result_login(String result,String pw,String name,String ph){
+    static public void result_login(String result,String pw,String name,String ph,String idx){
         loginMysql.active=false;
         if(result.equals("false"))
             Toast.makeText(mContext,"사용자 ID가 없습니다.",Toast.LENGTH_SHORT).show();
@@ -133,6 +134,7 @@ public class LoginActivity extends AppCompatActivity
                 Password=pw;
                 Name=name;
                 Phone=ph;
+                Index=idx;
                 mContext.startActivity(intent);
 
             }else//비밀번호 확인해주세욤

@@ -50,8 +50,12 @@ public class DealboardActivity extends AppCompatActivity {
 
         btn_dealadd.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
+                if(LoginActivity.Id.isEmpty()){
+                    Toast.makeText(DealboardActivity.this,"로그인 후 작성 가능합니다",Toast.LENGTH_LONG).show();
+                }
+                else{
                 Intent intent = new Intent(getApplicationContext(),WriteActivity.class);
-                startActivity(intent);
+                startActivity(intent);}
 
             }
         });
@@ -83,6 +87,7 @@ public class DealboardActivity extends AppCompatActivity {
                 HashMap<String,String> hashmap =board_List.get(i);
                 String title = hashmap.get("deal_title");
                 String date = hashmap.get("deal_datetime");
+                date=date.substring(2,10);
                 String writer = hashmap.get("writer");
                 adapter.addItem(title,date,writer);
                 adapter.notifyDataSetChanged();
@@ -194,6 +199,5 @@ public class DealboardActivity extends AppCompatActivity {
 
         return page.toString();
     }// getStringFromUrl()------------------------
-
 
 }

@@ -90,6 +90,7 @@ public class loginMysql extends Thread {
                 String getpw="";
                 String getname="";
                 String getph="";
+                String getidx="";
                 try {
 
                     JSONObject jObject = new JSONObject(result);
@@ -102,14 +103,15 @@ public class loginMysql extends Thread {
                         getpw = jObject.getString("password");
                         getname = jObject.getString("name");
                         getph = jObject.getString("phone");
+                        getidx=jObject.getString("idx");
                         Log.d("TESTtttttttttttttttttt", "Test:" + getid);
 
                     }
 
-                    LoginActivity.result_login(getid, getpw, getname,getph); //LoginActivity.java파일로 가서 수정
+                    LoginActivity.result_login(getid, getpw, getname,getph,getidx); //LoginActivity.java파일로 가서 수정
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    LoginActivity.result_login("false", "false", "false","false");
+                    LoginActivity.result_login("false", "false", "false","false","false");
                 }
             }
         });
