@@ -24,7 +24,6 @@ public class controlMysql extends Thread {
         String findingpw="http://192.168.0.237/study/android/login/sql/findingpw.php?id=";  //your server IP
         String userId=id;
         String nameuser="&name="+name;
-
         String mailuser="&mail="+mail;
 
         url=findingpw+userId+nameuser+mailuser;

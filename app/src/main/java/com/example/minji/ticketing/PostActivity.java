@@ -61,6 +61,7 @@ public class PostActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(),CommentActivity.class);
+                intent.putExtra("deal_idx",deal_idx);
                 startActivity(intent);
             }
 

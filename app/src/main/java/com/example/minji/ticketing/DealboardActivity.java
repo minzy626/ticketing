@@ -110,25 +110,17 @@ public class DealboardActivity extends AppCompatActivity {
 
             //읽어들인 JSON포맷의 데이터를 JSON객체로 변환
             JSONObject json = new JSONObject(jsonPage);
-            Log.d("testttttttttttttttttt","test"+json);
             JSONArray json_result = json.getJSONArray("deal_board");//결과객체
-            Log.d("testttttttttttttttttt","test"+json_result);
 
             for(int i=0;i<json_result.length();i++){
 
                 json=json_result.getJSONObject(i);
-                Log.d("testttttttttttttttttt","test"+json);
 
                 String deal_idx = json.getString("deal_idx");//""안에는 변수명
-                Log.d("TEST","Test:"+deal_idx );
                 String deal_title= json.getString("deal_title");
-                Log.d("TEST","Test:"+deal_title);
                 String deal_contents = json.getString("deal_contents");
-                Log.d("TEST","Test:"+deal_contents);
                 String deal_datetime = json.getString("deal_datetime");
-                Log.d("TEST","Test:"+deal_datetime);
                 String writer = json.getString("writer");
-                Log.d("TEST","Test:"+writer);
 
                 HashMap<String,String> board_map= new HashMap<String,String>();//해시맵에저장
 
