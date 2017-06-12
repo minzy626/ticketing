@@ -9,12 +9,11 @@
     tools:context="com.example.minji.ticketing.MysingerActivity">
 
 
-
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-         app:srcCompat="@mipmap/mysinger_title"/>
+        android:background="@mipmap/mysinger_title" />
 
     <EditText
         android:id="@+id/et_singer"
@@ -30,13 +29,14 @@
         android:id="@+id/btn_singeradd"
         android:layout_width="60pt"
         android:layout_height="wrap_content"
-        android:text="add" />
+        android:background="#F8E700"
+        android:textColor="#ffffff"
+        android:text="등록하기" />
 
     <ListView
         android:id="@+id/list_singer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
         android:layout_marginTop="20dp">
 
     </ListView>
